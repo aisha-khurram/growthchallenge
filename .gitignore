@@ -1,0 +1,29 @@
+# Ignore virtual environment files
+venv/
+.env
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore Streamlit secrets file
+.secrets.toml
+
+# Ignore data files (if you don't want to include them in Git)
+*.csv
+*.xlsx
+*.json
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore log files
+*.log
