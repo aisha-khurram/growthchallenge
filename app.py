@@ -1,61 +1,35 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
 
 # Set page config
-st.set_page_config(
-    page_title="📊 My Enhanced Streamlit App",
-    page_icon="📊",
-    layout="wide"
-)
-
-# Custom CSS for better UI
-st.markdown("""
-    <style>
-    .stButton button {
-        background-color: #4CAF50;
-        color: white;
-        border-radius: 5px;
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-    .stTextInput input, .stNumberInput input {
-        border-radius: 5px;
-        padding: 10px;
-    }
-    .stSelectbox div {
-        border-radius: 5px;
-        padding: 10px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+st.set_page_config(page_title="My First Streamlit App", page_icon="📊")
 
 # Title
-st.title("📊 My Enhanced Streamlit App")
-st.write("Welcome to this awesome app! Explore data, visualize charts, and interact with widgets.")
+st.title("My First Streamlit App")
+st.write("Welcome to this awesome app!")
 
 # Add a sidebar
 st.sidebar.header("Settings")
 user_name = st.sidebar.text_input("Enter your name", "User")
-st.sidebar.write(f"Welcome, {user_name}! 👋")
+st.sidebar.write(f"Welcome {user_name}!")
 
 # Create tabs
-tab1, tab2, tab3 = st.tabs(["📂 Data", "📈 Charts", "ℹ️ About"])
+tab1, tab2, tab3 = st.tabs(["Data", "Charts", "About"])
 
 with tab1:
-    st.header("📂 Data Section")
+    st.header("Data Section")
     
     # Create sample data
     data = pd.DataFrame({
-        'Name': ['sara', 'Aisha', 'Ayan', 'Zain'],
-        'Age': [30, 37, 17, 12],
-        'City': ['Narowal', 'Pindi', 'Lahore', 'Karachi']
+        'Name': ['Javeria', 'Amna', 'Ayan', 'Zain'],
+        'Age': [25, 30, 35, 40],
+        'City': ['Multan', 'Kracahi', 'Lahore', 'Pindi']
     })
     
     # Display the data
     st.write("### Sample DataFrame")
-    st.dataframe(data, use_container_width=True)
+    st.dataframe(data)
     
     # Add file uploader
     st.write("### Upload your own CSV")
@@ -65,7 +39,7 @@ with tab1:
         st.write(df)
 
 with tab2:
-    st.header("📈 Charts Section")
+    st.header("Charts Section")
     
     # Create sample data for charts
     chart_data = pd.DataFrame(
@@ -87,11 +61,20 @@ with tab2:
     show_scatter = st.checkbox("Show Scatter Plot")
     if show_scatter:
         st.write("### Scatter Plot")
-        fig = px.scatter(chart_data, x='A', y='B', title="Scatter Plot")
-        st.plotly_chart(fig, use_container_width=True)
+        scatter_fig = {
+            'data': [
+                {
+                    'x': chart_data['A'],
+                    'y': chart_data['B'],
+                    'mode': 'markers',
+                    'name': 'Points'
+                }
+            ]
+        }
+        st.plotly_chart(scatter_fig)
 
 with tab3:
-    st.header("ℹ️ About Section")
+    st.header("About Section")
     
     # Add columns
     col1, col2 = st.columns(2)
@@ -103,7 +86,6 @@ with tab3:
         - Multiple Chart Types
         - File Upload Capability
         - Real-time Updates
-        - Modern UI with Custom Styling
         """)
     
     with col2:
@@ -112,7 +94,7 @@ with tab3:
         1. Enter your name in the sidebar
         2. Explore different tabs
         3. Upload your own data
-        4. Interact with charts and widgets
+        4. Interact with charts
         """)
     
     # Add expander
@@ -124,7 +106,7 @@ with tab3:
 
 # Add interactive widgets at the bottom
 st.markdown("---")
-st.subheader("🎛️ Interactive Widgets Demo")
+st.subheader("Interactive Widgets Demo")
 
 # Create two columns
 col1, col2 = st.columns(2)
@@ -154,4 +136,4 @@ with col2:
 
 # Footer
 st.markdown("---")
-st.markdown("Built with ❤️ using Streamlit")
+st.markdown("Built with Streamlit ❤️")
